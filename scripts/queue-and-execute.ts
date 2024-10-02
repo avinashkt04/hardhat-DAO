@@ -6,6 +6,7 @@ import { moveBlocks } from "../utils/move-blocks";
 export async function queueAndExecute() {
     const args = [NEW_STORE_VALUE]
     const box = await ethers.getContractAt("Box", (await deployments.get("Box")).address)
+    // @ts-ignore
     const encodedFunctionCall = box.interface.encodeFunctionData(FUNC, args)
     const descriptionHash = ethers.keccak256(
         ethers.toUtf8Bytes(PROPOSAL_DESCRIPTION)

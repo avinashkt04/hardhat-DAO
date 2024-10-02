@@ -21,17 +21,16 @@ const deployBox: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
       await deployments.get("TimeLock")
     ).address
   );
-  const boxContract = await ethers.getContractAt("Box", box.address);
-  const transferOwnerTx = await boxContract.transferOwnership(timeLock.target);
-  await transferOwnerTx.wait(1);
-  log(`YOU DONE IT!`);
-
   if (
     !developmentChains.includes(network.name) &&
     process.env.ETHERSCAN_API_KEY
   ) {
     verify(box.address, []);
   }
+  const boxContract = await ethers.getContractAt("Box", box.address);
+  const transferOwnerTx = await boxContract.transferOwnership(timeLock.target);
+  await transferOwnerTx.wait(1);
+  log(`YOU DONE IT!`);
 };
 
 export default deployBox;

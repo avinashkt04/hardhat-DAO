@@ -28,6 +28,7 @@ export async function propose(
     ).address
   );
   const encodedFunctionCall = box.interface.encodeFunctionData(
+    // @ts-ignore
     functionToCall,
     args
   );
