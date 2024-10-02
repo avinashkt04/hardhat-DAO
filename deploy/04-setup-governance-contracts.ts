@@ -34,3 +34,4 @@ const setupContracts: DeployFunction = async (
 };
 
 export default setupContracts;
+setupContracts.tags = ["all", "setup"];
